@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{{user.username}} Details {% endblock %}
+{% block content %}
+<h1>{{user.username}} Details</h1>
+<ul class="list-group">
+    <li class="list-group-item">Name: {{user.first_name}} {{user.last_name}}</li>
+    <li class="list-group-item">Email: {{user.email}}</li>
+    <li class="list-group-item">Username: {{user.username}}</li>
+  </ul>
+  <a href="/users/{{user.username}}/feedback/add" class="btn btn-warning">Add Feedback</a>
+  <a href="/users/{{user.username}}/delete" class="btn btn-danger">Delete User</a>
+  <ul>
+      {% for feedback in user.feedback %}
+      Post {{feedback.id}} <br>
+      <strong>{{feedback.title}}</strong> <br>
+      {{feedback.content}}
+      <a class="btn btn-sm btn-warning" href="/feedback/{{feedback.id}}/update">Update Post</a>
+      <a class="btn btn-sm btn-danger" href="/feedback/{{feedback.id}}/delete">Delete Post</a>
+      {% endfor %}
+  </ul>
+{% endblock %}
